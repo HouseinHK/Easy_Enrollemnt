@@ -1,0 +1,38 @@
+<div class="feature-container">
+  <h2>Scheduling Integrity Report</h2>
+  <p class="subtitle">
+    {{ errors.length > 0 ? 'Review the following potential issues.' : 'No errors or warnings found. The schedule is clean.' }}
+  </p>
+
+  <div *ngIf="errors.length > 0" class="report-grid">
+    <div *ngFor="let error of errors" class="report-item" [ngClass]="{'is-warning': error.type.includes('warning')}">
+      <div class='report-icon'>
+        <span *ngIf="!error.type.includes('warning')">!</span>
+        <span *ngIf="error.type.includes('warning')">?</span>
+      </div>
+      <div class="report-summary">
+        <h4 class="report-type">{{ error.type }}</h4>
+        <p class="report-message">{{ error.message }}</p>
+      </div>
+      <div class="report-actions">
+        <button class="btn btn-primary" (click)="showInfo(error)">View Details</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedError" class="modal-overlay" (click)="closeInfo()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3>Error Details</h3>
+        <button class="close-button" (click)="closeInfo()">×</button>
+      </div>
+      <div class="modal-body">
+        <p>{{ selectedError.message }}</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="closeInfo()">Close</button>
+        <button class="btn btn-primary" (click)="showMoreInfo()">Investigate Courses</button>
+      </div>
+    </div>
+  </div>
+</div>

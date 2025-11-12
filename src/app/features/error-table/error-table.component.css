@@ -1,0 +1,159 @@
+.feature-container {
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 25px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+  font-size: 28px;
+  color: #333;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #6c757d;
+  margin-bottom: 30px;
+  font-size: 16px;
+}
+
+.report-grid {
+  display: grid;
+  gap: 15px;
+}
+
+.report-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f8d7da;
+  border-left: 5px solid #dc3545;
+  border-radius: 5px;
+  color: #721c24;
+}
+
+.report-item.is-warning {
+  background-color: #fff3cd;
+  border-left-color: #ffc107;
+  color: #856404;
+}
+
+.report-icon {
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(0,0,0,0.05);
+}
+
+.report-summary {
+  flex-grow: 1;
+}
+
+.report-type {
+  font-weight: 600;
+  font-size: 16px;
+  margin: 0 0 5px 0;
+}
+
+.report-message {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.report-actions {
+  margin-left: auto;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  width: 90%;
+  max-width: 500px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.close-button {
+  border: none;
+  background: none;
+  font-size: 28px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  color: #6c757d;
+}
+
+.modal-body p {
+  font-size: 16px;
+  text-align: left;
+  line-height: 1.6;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  border-top: 1px solid #dee2e6;
+  padding-top: 15px;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s;
+}
+
+.btn-primary { background-color: #007bff; color: white; }
+.btn-primary:hover { background-color: #0069d9; }
+
+.btn-secondary { background-color: #6c757d; color: white; }
+.btn-secondary:hover { background-color: #5a6268; }

@@ -1,0 +1,39 @@
+<div class="feature-container">
+  <div class="header">
+    <h2>Instructor Workload Report</h2>
+  </div>
+  <p class="subtitle">
+    Review the number of courses assigned to each instructor. Standard workload is {{ load[0]?.max_load || 4 }} courses.
+  </p>
+
+  <div *ngIf="load.length > 0; else noData" class="load-list">
+    <div *ngFor="let instructor of load" class="instructor-item">
+      <div class="instructor-info">
+        <h3 class="instructor-name">{{ instructor.instructor }}</h3>
+      </div>
+      
+      <div class="progress-bar-container">
+        <div 
+          class="progress-bar-fill" 
+          [ngClass]="instructor.status"
+          [style.width.%]="instructor.progressPercentage">
+        </div>
+        <span class="progress-label">
+          {{ instructor.load_number }} / {{ instructor.max_load }} Assigned
+        </span>
+      </div>
+
+      <div class="instructor-actions">
+        <button class="btn btn-primary" (click)="showInstructorCourses(instructor.instructor)">
+          View Assigned Courses
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noData>
+    <div class="no-data-message">
+      <p>No instructor data found. Add course sessions to generate a report.</p>
+    </div>
+  </ng-template>
+</div>

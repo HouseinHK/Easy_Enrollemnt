@@ -1,0 +1,243 @@
+.feature-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  margin-bottom: 25px;
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 15px 20px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #495057;
+}
+
+.card-header p {
+  margin: 0;
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card-footer {
+  padding: 15px 20px;
+  background-color: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+  text-align: right;
+}
+
+.save-controls {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.save-controls input {
+  flex-grow: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.versions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.version-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.version-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-color: #c8102e;
+}
+
+.version-item.selected {
+  background-color: #f0fff4;
+  color: #333;
+  border: 4px solid #28a745;
+  box-shadow: 0 0 15px rgba(40, 167, 69, 0.4);
+  transform: translateY(-2px);
+}
+
+.version-name {
+  font-weight: 600;
+}
+
+.selection-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+.previous-version-controls {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.previous-version-controls button {
+  min-width: 120px;
+}
+
+.results-card .card-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.change-section h4 {
+  font-size: 16px;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+}
+
+.change-section ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.change-section li {
+  background-color: #f8f9fa;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary { background-color: #007bff; color: white; }
+.btn-primary:hover { background-color: #0069d9; }
+.btn-primary:disabled { background-color: #a0cffa; cursor: not-allowed; }
+
+.btn-delete { background-color: #dc3545; color: white; }
+.btn-delete:hover { background-color: #c82333; }
+.btn-delete:disabled { background-color: #f5c6cb; cursor: not-allowed; }
+
+
+.btn-secondary { background-color: #6c757d; color: white; }
+.btn-secondary:hover { background-color: #5a6268; }
+
+.btn-success { background-color: #28a745; color: white; }
+.btn-success:hover { background-color: #218838; }
+
+.btn-small { padding: 5px 10px; font-size: 12px; }
+
+.no-data-message {
+  text-align: center;
+  color: #6c757d;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .feature-container {
+    padding: 15px;
+  }
+  
+  h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+  
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .card-header h3 {
+    margin-bottom: 10px;
+  }
+  
+  .selection-info {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  .previous-version-controls {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .previous-version-controls button {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  
+  .save-controls {
+    flex-direction: column;
+  }
+  
+  .save-controls input {
+    margin-bottom: 10px;
+  }
+  
+  .versions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .results-card .card-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .btn {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+}

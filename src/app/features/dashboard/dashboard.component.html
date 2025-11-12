@@ -1,0 +1,61 @@
+<div class="dashboard-container">
+  <button class="mobile-menu-toggle" (click)="toggleMobileMenu()">
+    <i class="fas" [ngClass]="isMobileMenuOpen ? 'fa-times' : 'fa-bars'"></i>
+  </button>
+
+  <div class="sidebar-container" [ngClass]="{'mobile-open': isMobileMenuOpen}">
+    <div class="logo-area">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c6/Abu_Dhabi_University.png" class="logo"/>
+    </div>
+    <nav class="navigation" *ngIf="isAdmin">
+        <ul>
+        <li>
+            <a routerLink="/dashboard/schedule" routerLinkActive="active-link" (click)="closeMobileMenuIfOpen()">View Schedule</a>
+        </li>
+        <li>
+            <a routerLink="/dashboard/creation" routerLinkActive="active-link" (click)="closeMobileMenuIfOpen()">Create Courses</a>
+        </li>
+        <li>
+            <a routerLink="/dashboard/deletion" routerLinkActive="active-link" (click)="closeMobileMenuIfOpen()">Delete Courses</a>
+        </li>
+        <li>
+            <a routerLink="/dashboard/load" routerLinkActive="active-link" (click)="closeMobileMenuIfOpen()">Instructor Loads</a>
+        </li>
+        <li>
+            <a routerLink="/dashboard/error-table" routerLinkActive="active-link" (click)="closeMobileMenuIfOpen()">Schedule Errors</a>
+        </li>
+        <li>
+            <a routerLink="/dashboard/compare-feature" routerLinkActive="active-link" (click)="closeMobileMenuIfOpen()">Save And Compare</a>
+        </li>
+        <li>
+            <a routerLink="/dashboard/user_creation" routerLinkActive="active-link" (click)="closeMobileMenuIfOpen()">Create new User</a>
+        </li>
+        </ul>
+    </nav>
+    <nav class="navigation" *ngIf="!isAdmin">
+        <ul>
+        <li>
+            <a routerLink="/dashboard/view" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" (click)="closeMobileMenuIfOpen()">View Enrolled Courses</a>
+        </li>
+        <li>
+            <a routerLink="/dashboard/add" routerLinkActive="active-link" (click)="closeMobileMenuIfOpen()">Add Courses</a>
+        </li>
+        <li>
+            <a routerLink="/dashboard/drop" routerLinkActive="active-link" (click)="closeMobileMenuIfOpen()">Drop Courses</a>
+        </li>
+        <li>
+            <a routerLink="/dashboard/swap" routerLinkActive="active-link" (click)="closeMobileMenuIfOpen()">Swap Courses</a>
+        </li>
+        </ul>
+    </nav>
+    <div class="logout-area">
+        <button (click)="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="content-area" [ngClass]="{'sidebar-open': isMobileMenuOpen}">
+    <router-outlet></router-outlet>
+  </div>
+  
+  <div class="mobile-overlay" *ngIf="isMobileMenuOpen" (click)="closeMobileMenu()"></div>
+</div>

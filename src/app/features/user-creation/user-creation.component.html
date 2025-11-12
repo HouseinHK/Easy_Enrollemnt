@@ -1,0 +1,44 @@
+<div class="form-container">
+  <div class="form-box">
+    <h2>Create New User</h2>
+
+    <form (ngSubmit)="create_user()" #userForm="ngForm">
+      <div class="input-group">
+        <label for="userType">User Type</label>
+        <select id="userType" name="userType" [(ngModel)]="userType" required>
+          <option value="" disabled>Select a role</option>
+          <option *ngFor="let type of userTypes" [value]="type">{{ type }}</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <div class="input-group">
+          <label for="id">University ID / Admin ID</label>
+          <input type="text" id="id" name="id" [(ngModel)]="id" required placeholder="Enter user ID">
+        </div>
+
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" [(ngModel)]="password" required placeholder="Enter initial password">
+        </div>
+      </div>
+
+      <div *ngIf="userType === 'Student'" class="input-group">
+        <label for="campus">Campus</label>
+        <select id="campus" name="campus" [(ngModel)]="campus" [required]="userType === 'Student'">
+          <option value="" disabled>Select a campus</option>
+          <option *ngFor="let c of campuses" [value]="c">{{ c }}</option>
+        </select>
+      </div>
+
+      <button type="submit" [disabled]="isCreating || userForm.invalid" class="submit-button">
+        {{ isCreating ? 'Creating...' : 'Create User' }}
+      </button>
+      
+      <div *ngIf="message" class="feedback-message">
+        {{ message }}
+      </div>
+    </form>
+
+  </div>
+</div>

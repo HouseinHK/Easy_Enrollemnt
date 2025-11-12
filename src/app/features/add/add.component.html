@@ -1,0 +1,42 @@
+<div class="feature-container">
+  <h2>Add a Course</h2>
+  
+  <div *ngIf="isLoading" class="loading-indicator">
+    Loading courses...
+  </div>
+  
+  <div *ngIf="!isLoading">
+    <table *ngIf="availableCourses.length > 0; else noCourses">
+      <thead>
+        <tr>
+          <th>Course</th>
+          <th>Day & Time</th>
+          <th>Instructor</th>
+          <th>Campus</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let course of availableCourses" [class.already-selected]="isCourseSelected(course)" [class.has-conflict]="hasTimeConflict(course) && !isCourseSelected(course)">
+          <td>{{ course.course_code }} - Section {{ course.section_number }}</td>
+          <td>{{ course.day_pattern }} - Slot {{ course.time_slot }}</td>
+          <td>{{ course.instructor }}</td>
+          <td>{{ course.campus }}</td>
+          <td>
+            <button *ngIf="!isCourseSelected(course)" class="btn-add" [disabled]="hasTimeConflict(course)" (click)="addCourse(course)">
+              <span *ngIf="!hasTimeConflict(course)">Add</span>
+              <span *ngIf="hasTimeConflict(course)">Time Conflict</span>
+            </button>
+            <button *ngIf="isCourseSelected(course)" class="btn-selected" disabled>Added</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <ng-template #noCourses>
+      <div class="no-courses-message">
+        No courses available for your campus.
+      </div>
+    </ng-template>
+  </div>
+</div>

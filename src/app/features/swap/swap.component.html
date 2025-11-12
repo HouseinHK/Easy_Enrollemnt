@@ -1,0 +1,42 @@
+<div class="feature-container">
+  <h2>Swap a Course</h2>
+  
+  <div *ngIf="isLoading" class="loading-indicator">
+    Loading courses...
+  </div>
+  
+  <div *ngIf="!isLoading">
+    <div *ngIf="studentCourses.length > 0 && availableCourses.length > 0; else noCoursesMessage">
+      <div class="form-group">
+        <label for="source">Course to Drop:</label>
+        <select id="source" [(ngModel)]="sourceKey">
+          <option value="" disabled selected>-- Select from your courses --</option>
+          <option *ngFor="let course of studentCourses" [value]="course.key">
+            {{ course.course_code }} - Section {{ course.section_number }} ({{ course.day_pattern }} - Slot {{ course.time_slot }})
+          </option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="target">Course to Add:</label>
+        <select id="target" [(ngModel)]="targetKey">
+          <option value="" disabled selected>-- Select from available courses --</option>
+          <option *ngFor="let course of availableCourses" [value]="course.key">
+            {{ course.course_code }} - Section {{ course.section_number }} ({{ course.day_pattern }} - Slot {{ course.time_slot }})
+          </option>
+        </select>
+      </div>
+      
+      <button class="btn-swap" [disabled]="!sourceKey || !targetKey" (click)="swap()">Perform Swap</button>
+    </div>
+    
+    <ng-template #noCoursesMessage>
+      <div class="no-courses-message" *ngIf="studentCourses.length === 0">
+        You are not enrolled in any courses to swap.
+      </div>
+      <div class="no-courses-message" *ngIf="studentCourses.length > 0 && availableCourses.length === 0">
+        No available courses to swap with.
+      </div>
+    </ng-template>
+  </div>
+</div>

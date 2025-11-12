@@ -1,0 +1,30 @@
+<div class="login-page">
+  <div class="login-container">
+    <div class="login-box">
+      <div class="logo-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c6/Abu_Dhabi_University.png" class="logo">
+      </div>
+      <h2>Login</h2>
+      <form (ngSubmit)="loginStudent()" #loginForm="ngForm">
+        <div class="input-group">
+          <label for="id">University ID</label>
+          <input type="text" id="id" name="id" [(ngModel)]="id" required #idField="ngModel">
+          <div *ngIf="idField.invalid && (idField.dirty || idField.touched)" class="error-message">
+            University ID is required.
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" [(ngModel)]="password" required #passwordField="ngModel">
+          <div *ngIf="passwordField.invalid && (passwordField.dirty || passwordField.touched)" class="error-message">
+            Password is required.
+          </div>
+        </div>
+        <div *ngIf="loginError" class="error-message api-error">
+          {{ loginError }}
+        </div>
+        <button type="submit" [disabled]="loginForm.invalid" class="login-button">Login</button>
+      </form>
+    </div>
+  </div>
+</div>

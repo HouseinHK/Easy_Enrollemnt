@@ -1,0 +1,87 @@
+<div class="feature-container">
+  <h2>Version Comparison</h2>
+  
+  <div class="card save-card">
+    <div class="card-header">
+      <h3>Save Current Schedule as a New Version</h3>
+    </div>
+    <div class="card-content save-controls">
+      <input type="text" placeholder="Enter version name (e.g., 'Final Draft v2')" [(ngModel)]="name">
+      <button class="btn btn-primary" (click)="Save_version()" [disabled]="!name">Save Version</button>
+    </div>
+  </div>
+
+  <div class="card selection-card">
+    <div class="card-header">
+      <h3>Select Two Versions to Compare</h3>
+      
+      <div class="selection-info" *ngIf="selected_items.length === 0 && comparsion.length > 0">
+        <div class="previous-version-controls">
+          <button class="btn btn-primary btn-small" (click)="loadPrevious()">Load Previous</button>
+          <button class="btn btn-delete btn-small" (click)="deletePrevious()">Delete Previous</button>
+        </div>
+      </div>
+      
+      <div class="selection-info" *ngIf="selected_items.length > 0">
+        <span>Selected: {{selected_items.length}} of 2</span>
+        <div>
+           <button class="btn btn-primary btn-small" [disabled]="selected_items.length !== 1" (click)="load()">Load</button>
+        </div>
+
+        <div>
+          <button class="btn btn-delete btn-small" [disabled]="selected_items.length !== 1" (click)="selectedDelete()">Delete</button>
+        </div>
+       
+        <button class="btn btn-secondary btn-small" (click)="clearSelection()">Clear</button>
+      </div>
+    </div>
+    <div class="card-content">
+      <div *ngIf="comparsion.length > 0; else noVersions" class="versions-grid">
+        <div 
+          *ngFor="let version of comparsion" 
+          class="version-item" 
+          (click)="selectVersion(version)"
+          [class.selected]="isVersionSelected(version)">
+          <span class="version-name">{{ version.val().name }}</span>
+        </div>
+      </div>
+      <ng-template #noVersions>
+        <p class="no-data-message">No saved versions found.</p>
+      </ng-template>
+    </div>
+    <div class="card-footer" *ngIf="selected_items.length === 2">
+      <button class="btn btn-success" (click)="comparing()">Compare Selected Versions</button>
+    </div>
+  </div>
+
+  <div class="card results-card" *ngIf="selected_items.length === 2 && comparing_done">
+    <div class="card-header">
+      <h3>Comparison Results</h3>
+      <p>Comparing '{{selected_items[0].name}}' with '{{selected_items[1].name}}'</p>
+    </div>
+    <div class="card-content">
+      <div *ngIf="changes1.length === 0 && changes2.length === 0 && changes3.length === 0" class="change-section">
+        <h4>No Changes Detected</h4>
+        <p>The selected versions are identical.</p>
+      </div>
+      <div *ngIf="changes1.length > 0" class="change-section">
+        <h4>Timing Changes</h4>
+        <ul>
+          <li *ngFor="let change of changes1">{{change}}</li>
+        </ul>
+      </div>
+      <div *ngIf="changes2.length > 0" class="change-section">
+        <h4>Faculty Reassignments</h4>
+        <ul>
+          <li *ngFor="let change of changes2">{{change}}</li>
+        </ul>
+      </div>
+      <div *ngIf="changes3.length > 0" class="change-section">
+        <h4>Added / Removed Sessions</h4>
+        <ul>
+          <li *ngFor="let change of changes3">{{change}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

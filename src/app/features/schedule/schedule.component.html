@@ -1,0 +1,59 @@
+<div class="feature-container">
+  <h2>Administrator Schedule Overview</h2>
+  <p class="subtitle">Select a campus to view occupied time slots. Click a slot to see details.</p>
+
+  <div class="campus-selector">
+    <div class="radio-group">
+      <input 
+        type="radio" 
+        id="al_ain_radio" 
+        name="campus" 
+        value="Al Ain"
+        [(ngModel)]="selectedCampus">
+      <label for="al_ain_radio">Al Ain</label>
+    </div>
+    <div class="radio-group">
+      <input 
+        type="radio" 
+        id="abu_dhabi_radio" 
+        name="campus"
+        value="Abu Dhabi"
+        [(ngModel)]="selectedCampus">
+      <label for="abu_dhabi_radio">Abu Dhabi</label>
+    </div>
+  </div>
+
+  <div class="schedule-grid">
+    <div class="day-column">
+      <div class="day-header">Monday / Wednesday</div>
+      <div class="slots-container">
+        <button *ngFor="let slot of slots_MW" 
+                class="slot-button"
+                [class.available]="isSlotAvailable(slot.num)"
+                [disabled]="!isSlotAvailable(slot.num)"
+                (click)="onSlotClick(slot)">
+          <span class="slot-time">{{ slot.time }}</span>
+          <span class="slot-status">
+            {{ isSlotAvailable(slot.num) ? 'View Details' : 'Empty' }}
+          </span>
+        </button>
+      </div>
+    </div>
+    
+    <div class="day-column">
+      <div class="day-header">Tuesday / Thursday</div>
+      <div class="slots-container">
+        <button *ngFor="let slot of slots_TR" 
+                class="slot-button"
+                [class.available]="isSlotAvailable(slot.num)"
+                [disabled]="!isSlotAvailable(slot.num)"
+                (click)="onSlotClick(slot)">
+          <span class="slot-time">{{ slot.time }}</span>
+          <span class="slot-status">
+            {{ isSlotAvailable(slot.num) ? 'View Details' : 'Empty' }}
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="feature-container">
+  <h2>Drop a Course</h2>
+  
+  <div *ngIf="isLoading" class="loading-indicator">
+    Loading your courses...
+  </div>
+  
+  <div *ngIf="!isLoading">
+    <table *ngIf="studentCourses.length > 0; else noCourses">
+      <thead>
+        <tr>
+          <th>Course Code</th>
+          <th>Section</th>
+          <th>Instructor</th>
+          <th>Day & Time</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let course of studentCourses">
+          <td>{{ course.course_code }}</td>
+          <td>{{ course.section_number }}</td>
+          <td>{{ course.instructor }}</td>
+          <td>{{ course.day_pattern }} - Slot {{ course.time_slot }}</td>
+          <td><button class="btn-drop" (click)="dropCourse(course)">Drop</button></td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <ng-template #noCourses>
+      <div class="no-courses-message">
+        You are not enrolled in any courses.
+      </div>
+    </ng-template>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="feature-container">
+  <div class="header">
+    <button class="btn btn-secondary" (click)="goBack()">← Go Back</button>
+    <div class="header-title">
+      <h2>Course Details</h2>
+      <p class="subtitle">{{filteredSelection.length}} course(s) found matching criteria</p>
+    </div>
+  </div>
+
+  <div class="search-bar">
+    <input 
+      type="text" 
+      class="search-input"
+      [(ngModel)]="searchTerm" 
+      (input)="onSearch()" 
+      placeholder="Type to filter results by any column...">
+  </div>
+
+  <div class="table-container">
+    <div *ngIf="filteredSelection.length > 0; else noData">
+      <table>
+        <thead>
+          <tr>
+            <th>Course Code</th>
+            <th>Instructor</th>
+            <th>Section</th>
+            <th>Campus</th>
+            <th>Days</th>
+            <th>Capacity</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let course of filteredSelection">
+            <td>{{ course.course_code }}</td>
+            <td>{{ course.instructor }}</td>
+            <td>{{ course.section_number }}</td>
+            <td>{{ course.campus }}</td>
+            <td>{{ course.day_pattern }}</td>
+            <td>{{ course.expected_capacity }}</td>
+            <td>
+              <button class="btn btn-danger" (click)="delete(course)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <ng-template #noData>
+    <div class="no-data-message">
+      <p>No courses found for the specified criteria.</p>
+    </div>
+  </ng-template>
+
+</div>

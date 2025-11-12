@@ -1,0 +1,150 @@
+:host {
+  display: block;
+  height: 100vh;
+  background-color: #f9fafb;
+}
+
+.dashboard-container {
+  display: flex;
+  height: 100%;
+  position: relative;
+}
+
+.sidebar {
+  flex-shrink: 0;
+}
+
+.content-area {
+  flex-grow: 1;
+  overflow-y: auto;
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar-container {
+  width: 260px;
+  height: 100%;
+  background-color: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+.logo-area {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.logo {
+  max-width: 150px;
+}
+
+.navigation ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navigation a {
+  display: block;
+  padding: 15px 20px;
+  color: #374151;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.navigation a:hover {
+  background-color: #f3f4f6;
+}
+
+.navigation a.active-link {
+  background-color: #c8102e;
+  color: #ffffff;
+}
+
+.logout-area {
+  margin-top: auto;
+}
+
+.logout-area button {
+  width: 100%;
+  padding: 12px;
+  background-color: #f1f1f1;
+  color: #c8102e;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.logout-area button:hover {
+  background-color: #e0e0e0;
+}
+
+/* Mobile menu styles */
+.mobile-menu-toggle {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 1100;
+  background-color: #c8102e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 900;
+  display: none;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .sidebar-container {
+    position: fixed;
+    left: -280px;
+    top: 0;
+    width: 260px;
+    height: 100%;
+    padding-top: 60px;
+  }
+  
+  .sidebar-container.mobile-open {
+    transform: translateX(280px);
+  }
+  
+  .mobile-overlay {
+    display: block;
+  }
+  
+  .content-area {
+    margin-left: 0;
+    width: 100%;
+    padding-top: 60px;
+  }
+}
